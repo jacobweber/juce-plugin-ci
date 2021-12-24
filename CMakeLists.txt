@@ -61,6 +61,8 @@ juce_add_plugin(AudioPluginExample
     FORMATS AU VST3 Standalone                  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
     PRODUCT_NAME "Audio Plugin Example")        # The name of the final executable, which can differ from the target name
 
+target_compile_features(AudioPluginExample PRIVATE cxx_std_20)
+
 # `juce_generate_juce_header` will create a JuceHeader.h for a given target, which will be generated
 # into your build tree. This should be included with `#include <JuceHeader.h>`. The include path for
 # this header will be automatically added to the target. The main function of the JuceHeader is to

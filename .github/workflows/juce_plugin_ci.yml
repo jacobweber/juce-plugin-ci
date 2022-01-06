@@ -43,7 +43,7 @@ jobs:
         submodules: true
 
     - name: Print env
-      run: env
+      run: echo "${{ env.PATH }}"
 
     - if: ${{ runner.os == 'Linux' }}
       name: Install JUCE dependencies (Linux only)

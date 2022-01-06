@@ -25,16 +25,16 @@ jobs:
             cc: "cl", cxx: "cl",
             environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
           }
-        # - {
-        #     name: "Ubuntu Latest GCC",
-        #     os: ubuntu-latest,
-        #     cc: "gcc", cxx: "g++"
-        #   }
-        # - {
-        #     name: "macOS Latest Clang",
-        #     os: macos-latest,
-        #     cc: "clang", cxx: "clang++"
-        #   }
+        - {
+            name: "Ubuntu Latest GCC",
+            os: ubuntu-latest,
+            cc: "gcc", cxx: "g++"
+          }
+        - {
+            name: "macOS Latest Clang",
+            os: macos-latest,
+            cc: "clang", cxx: "clang++"
+          }
 
     steps:
 
@@ -136,7 +136,6 @@ jobs:
           COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
             -S .
             -B build
-            -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
             -D CMAKE_C_COMPILER_LAUNCHER=ccache
             -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
           RESULT_VARIABLE result
@@ -174,7 +173,7 @@ jobs:
         execute_process(COMMAND ccache -p)
         execute_process(COMMAND ccache -z)
         execute_process(
-          COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build --config $ENV{BUILD_TYPE}
+          COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build --config "$ENV{BUILD_TYPE}"
           RESULT_VARIABLE result
         )
         if (NOT result EQUAL 0)

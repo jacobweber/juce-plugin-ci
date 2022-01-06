@@ -141,7 +141,7 @@ jobs:
             -D CMAKE_MAKE_PROGRAM=ninja
             -D CMAKE_C_COMPILER_LAUNCHER=ccache
             -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-            -D CMAKE_IGNORE_PATH="/mingw64/bin"
+            -D CMAKE_IGNORE_PATH="/mingw64/bin;/c/ProgramData/chocolatey/bin"
           RESULT_VARIABLE result
         )
         if (NOT result EQUAL 0)
